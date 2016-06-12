@@ -1,6 +1,6 @@
 {
   "name": "style-search",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Search CSS(-like) strings",
   "main": "index.js",
   "scripts": {
