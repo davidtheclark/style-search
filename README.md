@@ -1,4 +1,4 @@
-# style-search
+# style-search [![CircleCI](https://circleci.com/gh/davidtheclark/style-search.svg?style=svg)](https://circleci.com/gh/davidtheclark/style-search)
 
 Search CSS (and CSS-like) strings, with sensitivity to whether matches occur inside strings, comments, and functions.
 
