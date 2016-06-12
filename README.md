@@ -10,9 +10,28 @@ var styleSearch = require('style-search');
 styleSearch(options, callback);
 ```
 
-By default, the search ignores strings, comments, and function names. You can use the options to change this behavior or introduce other restrictions. That is what makes this module more useful for a quick search than using `indexOf()` or a `RegExp`.
+**By default, the search ignores strings, comments, and function names.** You can use the options to change this behavior or introduce other restrictions. That is what makes this module more useful for many searches than `indexOf()` or a `RegExp`.
 
 However, if you need more detailed parsing, you should consider using the real parsers [PostCSS](https://github.com/postcss/postcss), [`postcss-selector-parser`](https://github.com/postcss/postcss-selector-parser), and [`postcss-value-parser`](https://github.com/TrySound/postcss-value-parser).
+
+### Example
+
+```css
+/* Here is some pink */
+a { color: pink; }
+a::before { content: "pink" }
+b { color: shadesOfPink(7); }
+```
+
+```js
+styleSearch({
+  source: theCssStringAbove,
+  target: "pink",
+}, function(match, count) {
+  /* Only the "pink" in `color: pink` will be
+  reported as a match */
+});
+```
 
 ### Reporting matches
 
