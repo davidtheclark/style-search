@@ -1,5 +1,5 @@
 var test = require("tape");
-var styleSearch = require(".");
+var styleSearch = require("./index");
 
 function styleSearchResults(options) {
   const results = [];
