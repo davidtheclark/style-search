@@ -52,6 +52,8 @@ If `true`, the search will stop after one match is found.
 
 `"skip"` | `"check"` | `"only"`. Default: `"skip"`.
 
+This includes both standard `/* CSS comments */` and non-standard but widely used `// single line comments`.
+
 #### strings
 
 `"skip"` | `"check"` | `"only"`. Default: `"skip"`.
