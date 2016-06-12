@@ -10,7 +10,9 @@ var styleSearch = require('style-search');
 styleSearch(options, callback);
 ```
 
-By default, the search ignores strings, comments, and function names. You can use the options to change this behavior or introduce other restrictions.
+By default, the search ignores strings, comments, and function names. You can use the options to change this behavior or introduce other restrictions. That is what makes this module more useful for a quick search than using `indexOf()` or a `RegExp`.
+
+However, if you need more detailed parsing, you should consider using the real parsers [PostCSS](https://github.com/postcss/postcss), [`postcss-selector-parser`](https://github.com/postcss/postcss-selector-parser), and [`postcss-value-parser`](https://github.com/TrySound/postcss-value-parser).
 
 ### Reporting matches
 
@@ -26,6 +28,8 @@ For every match found your `callback` is invoked. It is passed two arguments:
 - The count of how many matches have been found up to this point.
 
 ### Options
+
+Below you'll see that syntax feature options all accept three keywords: `"skip"`, `"check"`, `"only"`. An error will be thrown if you use `"only"` more than once.
 
 #### source
 
