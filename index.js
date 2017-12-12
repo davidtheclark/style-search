@@ -84,7 +84,7 @@ module.exports = function (options, callback) {
     if (
       !insideString && !insideComment
       && currentChar === "/"
-      && source[i - 1] !== "\\" // escaping
+      && !charIsEscaped(i)
     ) {
       // standard comments
       if (source[i + 1] === "*") {
@@ -104,7 +104,7 @@ module.exports = function (options, callback) {
       if (
         !insideSingleLineComment
         && currentChar === "*"
-        && source[i - 1] !== "\\" // escaping
+        && !charIsEscaped(i)
         && source[i + 1] === "/"
         && source[i - 1] !== "/" // don't end if it's /*/
       ) {
@@ -126,7 +126,7 @@ module.exports = function (options, callback) {
 
     // Register the beginning of a string
     if (!insideComment && !insideString && (currentChar === "\"" || currentChar === "'")) {
-      if (source[i - 1] === "\\") continue; // escaping
+      if (charIsEscaped(i)) continue; // escaping
 
       openingQuote = currentChar;
       insideString = true;
@@ -139,7 +139,7 @@ module.exports = function (options, callback) {
     if (insideString) {
       // Register the end of a string
       if (currentChar === openingQuote) {
-        if (source[i - 1] === "\\") continue; // escaping
+        if (charIsEscaped(i)) continue;
         insideString = false;
         continue;
       }
@@ -199,5 +199,11 @@ module.exports = function (options, callback) {
     if (onlyComments && !insideComment) return;
     matchCount++;
     callback(match, matchCount);
+  }
+
+  function charIsEscaped(index) {
+    var esc = false;
+    while (source[--index] === "\\") esc = !esc;
+    return esc;
   }
 }

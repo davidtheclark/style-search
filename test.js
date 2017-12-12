@@ -281,10 +281,30 @@ test("handles escaped double-quotes in double-quote strings", function(t) {
     source: 'abc "a\\"bc" foo cba',
     target: "c",
   }), [ 2, 16 ]);
+  t.deepEqual(styleSearchResults({
+    source: 'content: \\"\n',
+    target: "\n",
+    strings: 'only'
+  }), []);
+  t.deepEqual(styleSearchResults({
+    source: 'content: "\\"\n',
+    target: "\n",
+    strings: 'only'
+  }), [ 12 ]);
+  t.deepEqual(styleSearchResults({
+    source: 'content: "\\\\"\n',
+    target: "\n",
+    strings: 'only'
+  }), []);
+  t.deepEqual(styleSearchResults({
+    source: 'content: "\\\\\\"\n',
+    target: "\n",
+    strings: 'only'
+  }), [ 14 ]);
   t.end();
 });
 
-test("handles escaped double-quotes in single-quote strings", function(t) {
+test("handles escaped single-quotes in single-quote strings", function(t) {
   t.deepEqual(styleSearchResults({
     source: "abc 'ab\\'c'",
     target: "c",
@@ -293,6 +313,26 @@ test("handles escaped double-quotes in single-quote strings", function(t) {
     source: "abc 'a\\'bc' foo cba",
     target: "c",
   }), [ 2, 16 ]);
+  t.deepEqual(styleSearchResults({
+    source: "content: \\'\n",
+    target: "\n",
+    strings: 'only'
+  }), []);
+  t.deepEqual(styleSearchResults({
+    source: "content: '\\'\n",
+    target: "\n",
+    strings: 'only'
+  }), [ 12 ]);
+  t.deepEqual(styleSearchResults({
+    source: "content: '\\\\'\n",
+    target: "\n",
+    strings: 'only'
+  }), []);
+  t.deepEqual(styleSearchResults({
+    source: "content: '\\\\\\'\n",
+    target: "\n",
+    strings: 'only'
+  }), [ 14 ]);
   t.end();
 });
 
