@@ -202,8 +202,8 @@ module.exports = function (options, callback) {
   }
 
   function charIsEscaped(index) {
-    var esc = false
-    while (source[--index] === "\\") esc = !esc
-    return esc
+    var esc = false;
+    while (source[--index] === "\\") esc = !esc;
+    return esc;
   }
 }
