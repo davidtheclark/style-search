@@ -44,6 +44,7 @@ For every match found your `callback` is invoked. It is passed two arguments:
   - `insideFunctionArguments`: whether the match is inside a function — *this includes the parentheses around the arguments*
   - `insideComment`: whether the match is inside a comment
   - `insideString`: whether the match is inside a string
+  - `insideParens`: whether the match is inside parenthesis
 - The count of how many matches have been found up to this point.
 
 ### Options
